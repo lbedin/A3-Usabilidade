@@ -1,20 +1,20 @@
-# Aurora Saúde - sistema de agendamento
+# A3-Usabilidade
 
-Protótipo local e independente para a atividade. Não precisa instalar pacotes.
+Protótipo local de um sistema online de agendamento para clínicas médicas, desenvolvido para a atividade de análise e modelagem de sistemas.
 
 ## Como abrir
 
-Abra `index.html` no navegador. Na primeira abertura, o programa cria exemplos fictícios para a clínica.
+Abra `index.html` no navegador. O programa não precisa instalar pacotes. Na primeira abertura, carrega exemplos fictícios.
 
 ## Funcionalidades
 
-- Painel com resumo, agenda do dia, calendário e atividade recente.
-- Cadastro de pacientes e profissionais, incluindo horários, intervalo e dias de atendimento.
-- Agendamento com horários livres e antecedência mínima de 24 horas.
-- Reagendamento e cancelamento com confirmação; abaixo de 12 horas, avisa sobre a política de cancelamento.
-- Busca de pacientes, filtros por data e situação e notificações simuladas.
-- Dados persistidos no armazenamento local deste navegador.
+- Painel, calendário e agenda diária.
+- Cadastro de pacientes e profissionais, incluindo horários e dias de atendimento.
+- Agendamento com seleção de horários livres e antecedência mínima de 24 horas.
+- Reagendamento e cancelamento, com aviso para cancelamentos a menos de 12 horas.
+- Busca de pacientes, filtros e avisos de atividade simulados.
+- Dados guardados no armazenamento local deste navegador.
 
-## Limites da demonstração
+## Limites
 
-Este é um protótipo acadêmico: não envia e-mail/SMS, não tem login real nem sincroniza entre dispositivos. Os dados ficam no navegador usado para abrir a página. Não insira dados médicos reais. Para reiniciar os exemplos, apague a chave `aurora-agenda-v1` no armazenamento local do navegador.
+Este é um protótipo acadêmico. Não envia e-mail ou SMS, não possui login real e não sincroniza dados entre dispositivos. Use apenas dados fictícios. Para reiniciar os exemplos, remova a chave `aurora-agenda-v1` do armazenamento local do navegador.

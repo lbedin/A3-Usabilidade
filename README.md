@@ -30,7 +30,7 @@ Abra `http://127.0.0.1:4173/` para acessar o site. A documentação interativa d
 - `GET /api/doctors` e `GET /api/patients` - listas de cadastros.
 - `GET /api/appointments?date=AAAA-MM-DD` - lista consultas, com filtro opcional.
 - `POST /api/appointments` - agenda uma consulta e valida disponibilidade e antecedência.
-- `PATCH /api/appointments/{id}` - cancela ou reagenda uma consulta.
+- `PATCH /api/appointments/{id}` - cancela, conclui após o horário ou reagenda uma consulta.
 
 ## Dados de demonstração
 

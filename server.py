@@ -123,7 +123,7 @@ body{margin:0;background:#f4f7f5;color:#19343d;font:15px/1.5 system-ui,Segoe UI,
 <div class='route'><b class='verb'>GET</b><code class='path'>/api/doctors</code><span class='desc'>Lista profissionais e disponibilidade</span><button class='call' data-url='/api/doctors'>Executar</button></div>
 <div class='route'><b class='verb'>GET</b><code class='path'>/api/patients</code><span class='desc'>Lista pacientes da demonstração</span><button class='call' data-url='/api/patients'>Executar</button></div>
 <div class='route'><b class='verb'>GET</b><code class='path'>/api/appointments</code><span class='desc'>Lista consultas; aceita filtro ?date=AAAA-MM-DD</span><button class='call' data-url='/api/appointments?date=2026-11-25'>Executar</button></div>
-<div class='route'><b class='verb'>POST</b><code class='path'>/api/appointments</code><span class='desc'>Cria consulta e valida a regra de 24 horas</span><button class='call' data-url='/api/appointments?demo=1'>Executar exemplo</button></div><div class='route'><b class='verb'>PATCH</b><code class='path'>/api/appointments/{id}</code><span class='desc'>Cancela ou reagenda uma consulta</span><span class='badge'>JSON</span></div></section>
+<div class='route'><b class='verb'>POST</b><code class='path'>/api/appointments</code><span class='desc'>Cria consulta e valida a regra de 24 horas</span><button class='call' data-url='/api/appointments?demo=1'>Executar exemplo</button></div><div class='route'><b class='verb'>PATCH</b><code class='path'>/api/appointments/{id}</code><span class='desc'>Cancela, conclui após o horário ou reagenda uma consulta</span><span class='badge'>JSON</span></div></section>
 <section class='box'><h2>Resposta da API</h2><pre class='out' id='out'>Escolha uma rota para executar a chamada.</pre><p class='foot'>Os exemplos usam cadastros fictícios e ficam no banco local aurora.sqlite3.</p></section>
 <script>document.querySelectorAll('[data-url]').forEach(b=>b.onclick=async()=>{const out=document.querySelector('#out');out.textContent='Enviando requisição...';try{let url=b.dataset.url,method='GET',body;if(url.endsWith('?demo=1')){url='/api/appointments';method='POST';const doctors=await(await fetch('/api/doctors')).json(),patients=await(await fetch('/api/patients')).json();const d=doctors[0],p=patients[0];let day=new Date(Date.now()+72*3600000);while(day.getDay()===0||day.getDay()===6)day.setDate(day.getDate()+1);let hm=d.start.split(':').map(Number),date=day.toISOString().slice(0,10),time=d.start;body={patientId:p.id,doctorId:d.id,date,time}}const res=await fetch(url,{method,headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined}),json=await res.json();out.textContent=`${method} ${url}\nHTTP ${res.status}\n\n${JSON.stringify(json,null,2)}`}catch(e){out.textContent='Falha na chamada: '+e.message}});</script></main></body></html>"""
 
@@ -223,6 +223,13 @@ class Handler(BaseHTTPRequestHandler):
                     return self.send_body(404, {"error": "Consulta não encontrada"})
                 if payload.get("status") == "Cancelada":
                     con.execute("UPDATE appointments SET status='Cancelada' WHERE id=?", (appointment_id,))
+                elif payload.get("status") == "Concluída":
+                    if row["status"] != "Agendada":
+                        raise ValueError("Somente consultas agendadas podem ser concluídas.")
+                    starts = datetime.strptime(row["date"] + "T" + row["time"], "%Y-%m-%dT%H:%M")
+                    if starts > datetime.now():
+                        raise ValueError("Só é possível concluir a consulta depois do horário marcado.")
+                    con.execute("UPDATE appointments SET status='Concluída' WHERE id=?", (appointment_id,))
                 elif payload.get("date") and payload.get("time"):
                     merged = {"patientId":row["patient_id"],"doctorId":row["doctor_id"],"date":payload["date"],"time":payload["time"]}
                     validate_booking(con, merged, skip_id=appointment_id)

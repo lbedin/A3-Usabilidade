@@ -1,24 +1,36 @@
-# A3-Usabilidade
+# A3-Usabilidade | Aurora Saúde
 
-Protótipo local de um sistema online de agendamento para clínicas médicas, desenvolvido para a atividade de análise e modelagem de sistemas.
+Sistema de agendamento de consultas com interface web e API REST local, feito como protótipo acadêmico.
 
-## Como abrir
+## Iniciar
 
-Abra `index.html` no navegador. O programa não precisa instalar pacotes. Na primeira abertura, carrega exemplos fictícios.
+Requer Python 3, sem pacotes extras.
+
+```powershell
+python server.py
+```
+
+Abra `http://127.0.0.1:4173/` para acessar o site. A documentação interativa da API fica em `http://127.0.0.1:4173/api/docs`.
 
 ## Funcionalidades
 
-- Painel, calendário e agenda diária.
-- Cadastro de pacientes e profissionais, incluindo horários e dias de atendimento.
-- Agendamento com seleção de horários livres e antecedência mínima de 24 horas.
-- Reagendamento e cancelamento, com aviso para cancelamentos a menos de 12 horas.
-- Busca de pacientes, filtros e avisos de atividade simulados.
-- Dados guardados no armazenamento local deste navegador.
+- Cadastro de pacientes e profissionais, com disponibilidade semanal.
+- Consulta da agenda e horários livres.
+- Agendamento, reagendamento e cancelamento.
+- Antecedência mínima de 24 horas e validação de conflito de horários no servidor.
+- API REST em JSON e persistência SQLite no arquivo `aurora.sqlite3`.
+- Notificações simuladas na interface.
 
-## Limites
+## Rotas principais
 
-Este é um protótipo acadêmico. Não envia e-mail ou SMS, não possui login real e não sincroniza dados entre dispositivos. Use apenas dados fictícios. Para reiniciar os exemplos, remova a chave `aurora-agenda-v1` do armazenamento local do navegador.
+- `GET /api/health` - estado do serviço.
+- `GET /api/state` - estado completo da demonstração.
+- `PUT /api/state` - sincroniza os dados da interface com o servidor.
+- `GET /api/doctors` e `GET /api/patients` - listas de cadastros.
+- `GET /api/appointments?date=AAAA-MM-DD` - lista consultas, com filtro opcional.
+- `POST /api/appointments` - agenda uma consulta e valida disponibilidade e antecedência.
+- `PATCH /api/appointments/{id}` - cancela ou reagenda uma consulta.
 
-## Identidade visual
+## Dados de demonstração
 
-A paleta usa azul-petróleo na navegação, verde-água nas ações principais, fundo claro e acentos suaves para diferenciar indicadores. As mesmas cores e estados visuais são aplicados às quatro áreas e aos layouts responsivos.
+A primeira execução cria cadastros fictícios. Use apenas dados de exemplo: esta aplicação não possui autenticação, não envia e-mail/SMS e não foi projetada para guardar dados médicos reais. Para reiniciar, pare o servidor e apague `aurora.sqlite3`.

@@ -1,0 +1,38 @@
+{
+  "conflict": {
+    "httpStatus": 400,
+    "body": {
+      "error": "Este horário já está reservado."
+    }
+  },
+  "created": {
+    "id": "85b6426e-b7e6-47c2-8c50-f977a6ffd8c9",
+    "patientId": "p1",
+    "doctorId": "d1",
+    "date": "2026-11-25",
+    "time": "09:00",
+    "status": "Agendada"
+  },
+  "request": {
+    "time": "09:00",
+    "patientId": "p1",
+    "doctorId": "d1",
+    "date": "2026-11-25"
+  },
+  "health": {
+    "status": "ok",
+    "service": "aurora-agenda-api",
+    "version": "1.0.0"
+  },
+  "list": [
+    {
+      "id": "85b6426e-b7e6-47c2-8c50-f977a6ffd8c9",
+      "patientId": "p1",
+      "doctorId": "d1",
+      "date": "2026-11-25",
+      "time": "09:00",
+      "status": "Agendada"
+    }
+  ],
+  "doctorCount": 3
+}

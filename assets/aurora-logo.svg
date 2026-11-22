@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Aurora Saúde</title>
+  <desc id="desc">Sol nascente sobre ondas suaves em um símbolo de cuidado e renovação.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2ba99a"/>
+      <stop offset="1" stop-color="#135b66"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b7f0cc"/>
+      <stop offset="1" stop-color="#e8fff2"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="19" fill="url(#bg)"/>
+  <circle cx="32" cy="29" r="12" fill="#ffe5a6"/>
+  <path d="M11 39c8-7 15-10 21-10 8 0 14 4 21 10v10H11z" fill="#208c82"/>
+  <path d="M9 43c8-6 16-9 23-9 8 0 15 3 23 9" fill="none" stroke="url(#wave)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M12 51c7-4 14-6 20-6s13 2 20 6" fill="none" stroke="#8de0c0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M32 8v4M14 16l3 3M50 16l-3 3" stroke="#eafff2" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
+</svg>

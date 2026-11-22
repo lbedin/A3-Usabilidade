@@ -166,6 +166,8 @@ class Handler(BaseHTTPRequestHandler):
                 if day:
                     items = [a for a in items if a["date"] == day]
                 return self.send_body(200, items)
+        if parsed.path == "/assets/aurora-logo.svg":
+            return self.send_body(200, (ROOT / "assets" / "aurora-logo.svg").read_text(encoding="utf-8"), "image/svg+xml; charset=utf-8")
         if parsed.path == "/" or parsed.path == "/index.html":
             return self.send_body(200, (ROOT / "index.html").read_text(encoding="utf-8-sig"), "text/html; charset=utf-8")
         return self.send_body(404, {"error": "Rota não encontrada"})

@@ -20,6 +20,7 @@ Abra `http://127.0.0.1:4173/` para acessar o site. A documentação interativa d
 - Antecedência mínima de 24 horas e validação de conflito de horários no servidor.
 - API REST em JSON e persistência SQLite no arquivo `aurora.sqlite3`.
 - Notificações simuladas na interface.
+- Identidade visual vetorial da Aurora Saúde em `assets/aurora-logo.svg`.
 
 ## Rotas principais
 

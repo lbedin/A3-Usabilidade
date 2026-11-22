@@ -18,3 +18,7 @@ Abra `index.html` no navegador. O programa não precisa instalar pacotes. Na pri
 ## Limites
 
 Este é um protótipo acadêmico. Não envia e-mail ou SMS, não possui login real e não sincroniza dados entre dispositivos. Use apenas dados fictícios. Para reiniciar os exemplos, remova a chave `aurora-agenda-v1` do armazenamento local do navegador.
+
+## Identidade visual
+
+A paleta usa azul-petróleo na navegação, verde-água nas ações principais, fundo claro e acentos suaves para diferenciar indicadores. As mesmas cores e estados visuais são aplicados às quatro áreas e aos layouts responsivos.
